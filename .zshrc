@@ -18,8 +18,10 @@ plugins=(git debian gem pip rails3 extract python)
 source $ZSH/oh-my-zsh.sh
 
 # PATH modifications
-export PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:$HOME/.cabal/bin
+PATH=$PATH:$HOME/.rvm/bin
 
 # Aliases
 alias tmux="tmux -2"
+
 
