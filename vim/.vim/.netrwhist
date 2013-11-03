@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/zach/Dropbox/code/meteor/clavius/client/views/drumkit'
+let g:netrw_dirhist_2='/home/zach/Dropbox/code/classes/CS/50/connectnk/src'
+let g:netrw_dirhist_3='/home/zach/.config/powerline/themes/tmux'
+let g:netrw_dirhist_4='/home/zach/Dropbox/code/py/750words'
+let g:netrw_dirhist_5='/home/zach/Dropbox/code/dotfiles/.irssi/scripts/autoload'
