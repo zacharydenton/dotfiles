@@ -1,54 +1,86 @@
-" Pathogen
-call pathogen#infect()
-
-syntax on
-filetype plugin indent on
-set sw=4 ts=4
-let mapleader = ","
 set nocompatible
+filetype off
 
-" Color scheme
-colors zenburn
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Powerline
-set laststatus=2 " Always display the statusline in all windows
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+Plugin 'gmarik/Vundle.vim'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'JazzCore/ctrlp-cmatcher'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'scrooloose/syntastic'
+Plugin 'dag/vim2hs'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'Twinside/vim-hoogle'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'jnurmine/Zenburn'
 
+call vundle#end()
+filetype plugin indent on
+colorscheme zenburn
 
-" Hammer.vim
-map <leader>p :Hammer<CR>
-let g:HAMMER_BROWSER = "w3m"
-let g:HAMMER_TEMPLATE = "book"
+" ctrl-p
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ -g ""'
 
-" CTRL-P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 
-" Python
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" jedi
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "left"
+
+" neco-ghc 
+let g:necoghc_enable_detailed_browse = 1
+
+" ghcmod
+autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+
+" hoogle
+autocmd BufNewFile,BufRead *.hs map <buffer> <F1> :Hoogle 
+
+" python
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab shiftround autoindent
-let g:jedi#auto_initialization = 0
 
-" Ruby
-autocmd BufEnter *.rb set sw=2 ts=2 sta et fo=croql
-nmap <leader>rci :%!ruby-code-indenter<cr> 
+" haskell
+autocmd FileType haskell set tabstop=8 expandtab softtabstop=4 shiftwidth=4 smarttab shiftround nojoinspaces
 
-" Haskell
-autocmd FileType haskell set sw=4 ts=4 sta et fo=croql
-let g:haddock_browser = "w3m"
-let g:haddock_docdir = "~/.cabal/share/doc"
-
-" Go
-set rtp+=/usr/local/go/misc/vim
-
-" Java
-autocmd FileType java setlocal omnifunc=javacomplete#Complete 
-
-" Text
+" text
 autocmd BufNewFile,BufRead *.txt set filetype=pandoc
 autocmd BufNewFile,BufRead *.page set filetype=pandoc
-autocmd FileType pandoc set ai sw=4 ts=4 et fo=croql
+autocmd FileType pandoc set ai sw=4 ts=4 fo=croql
+autocmd FileType pandoc set equalprg = "pandoc -t markdown"
 
-" Coffeescript
-autocmd BufNewFile,BufRead *.coffee set sw=2 ts=2 ai sta et fo=croql
+" coffeescript
+autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 ai sta et fo=croql
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
+" less
 autocmd FileType less set sw=2 ts=2
