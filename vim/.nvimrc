@@ -9,9 +9,9 @@ Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'JazzCore/ctrlp-cmatcher'
 Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'neovimhaskell/haskell-vim'
-Plugin 'enomsg/vim-haskellConcealPlus'
+"Plugin 'enomsg/vim-haskellConcealPlus'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
@@ -27,6 +27,9 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-classpath'
 Plugin 'tpope/vim-salve'
+Plugin 'elzr/vim-json'
+Plugin 'jceb/vim-orgmode'
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()
 filetype plugin indent on
@@ -42,6 +45,9 @@ set noswapfile
 set mouse=
 set nohlsearch
 set laststatus=2
+set expandtab
+set shiftwidth=2
+set tabstop=2
 
 " Return to last edit position when opening files
 augroup last_edit
@@ -57,9 +63,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_flake8_args='--ignore=E501'
 
 " Ctrl-P
 let g:ctrlp_match_func = {'match' : 'matcher#cmatch'}
@@ -102,8 +109,12 @@ let g:necoghc_enable_detailed_browse = 1
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Python
+autocmd FileType python setlocal colorcolumn=120
 let g:pymode_rope = 0
 
-" Coffeescript
+" JavaScript
+let g:syntastic_javascript_checkers = ['eslint']
+
+" CoffeeScript
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 ai sta et fo=croql
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
