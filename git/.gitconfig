@@ -1,3 +1,9 @@
 [user]
+	email = z@chdenton.com
 	name = Zach Denton
-	email = zacharydenton@gmail.com
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
