@@ -8,6 +8,9 @@ Plug 'elixir-lang/vim-elixir'
 call plug#end()
 
 " General settings
+set term=xterm-256color
+set t_ut= " disable BCE
+set termguicolors
 colorscheme zenburn
 set shiftwidth=2 tabstop=2 expandtab
 
