@@ -5,6 +5,7 @@ Plug 'jnurmine/Zenburn'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 " General settings
