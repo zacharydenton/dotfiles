@@ -1,18 +1,5 @@
-" Plugins
-call plug#begin('~/.vim/bundle')
-Plug 'tpope/vim-sensible'
-Plug 'jnurmine/Zenburn'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'kchmck/vim-coffee-script'
-call plug#end()
-
 " General settings
-set term=xterm-256color
-set t_ut= " disable BCE
-set termguicolors
-colorscheme zenburn
+colorscheme dimburn
 set shiftwidth=2 tabstop=2 expandtab
 
 " FZF
