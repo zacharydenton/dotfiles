@@ -20,6 +20,13 @@ set grepformat=$f:$l:%c:%m
 " ALE
 let g:ale_fix_on_save = 1
 let g:ale_cache_executable_check_failures = 1
+let g:ale_linters = {
+\ 'javascript': [],
+\}
+let g:ale_fixers = {
+\ 'javascript': ['prettier'],
+\}
+let g:ale_javascript_prettier_options = '--trailing-comma all --no-bracket-spacing'
 
 " Space to copy in visual mode
 vnoremap <space> "*y
@@ -27,7 +34,7 @@ vnoremap <space> "*y
 " Fuzzy finder (FZF) for files
 map <C-P> :Files<CR>
 
-" FZF for a given string across the entire coebase
+" FZF for a given string across the entire codebase
 map <C-F> :Find<space>
 
 " LSP keybindings
