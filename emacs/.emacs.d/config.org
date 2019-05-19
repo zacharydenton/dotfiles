@@ -1,0 +1,90 @@
+#+TITLE: Emacs Configuration
+
+* Package management
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (setq package-archives '(("org" . "http://orgmode.org/elpa/")
+    ("gnu" . "http://elpa.gnu.org/packages/")
+    ("melpa" . "https://melpa.org/packages/")))
+  (package-initialize)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  (require 'use-package)
+#+END_SRC
+
+* UI configuration
+
+#+BEGIN_SRC emacs-lisp
+  (use-package zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'zenburn t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (tooltip-mode -1)
+  (menu-bar-mode -1)
+  (set-fringe-mode 0)
+  (blink-cursor-mode 0)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (set-frame-font (font-spec :family "xos4 Terminus" :size 20))
+#+END_SRC
+
+* General settings
+  
+#+BEGIN_SRC emacs-lisp
+  (setq-default
+   fill-column 80
+   inhibit-startup-screen t
+   initial-scratch-message ""
+   mouse-yank-at-point t)
+#+END_SRC
+
+CTRL-h is backspace.
+
+#+BEGIN_SRC emacs-lisp
+  (keyboard-translate ?\C-h ?\C-?)
+#+END_SRC
+
+Display time and loadavg in the modeline.
+
+#+BEGIN_SRC emacs-lisp
+  (display-time-mode 1)
+#+END_SRC
+
+Turn on auto-fill-mode almost everywhere.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package simple
+    :ensure nil
+    :hook
+    ((prog-mode . turn-on-auto-fill)
+     (text-mode . turn-on-auto-fill)))
+#+END_SRC
+
+Show matching parentheses.
+
+#+BEGIN_SRC emacs-lisp
+  (setq show-paren-delay 0)
+  (show-paren-mode 1)
+#+END_SRC
+
+* Evil mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq evil-want-C-u-scroll t)
+  (use-package evil
+    :ensure t
+    :config
+    (evil-mode 1))
+#+END_SRC

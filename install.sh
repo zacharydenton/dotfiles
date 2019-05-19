@@ -4,8 +4,9 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 set -x
 
 git submodule update --init
-ln -s $DIR/emacs/.doom.d ~
-ln -s $DIR/emacs/.emacs.d ~
+mkdir ~/.emacs.d
+cp $DIR/emacs/.emacs.d/init.el ~/.emacs.d/init.el
+ln -s $DIR/emacs/.emacs.d/config.org ~/.emacs.d/config.org
 ln -s $DIR/git/.gitconfig ~
 ln -s $DIR/tmux/.tmux.conf ~
 ln -s $DIR/vim/.vim ~
