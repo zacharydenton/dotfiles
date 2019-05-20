@@ -2,6 +2,9 @@
 
 * Package management
 
+The first thing to do is set up the package management system. Add a
+few more package repositories in addition to the default one.
+
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (setq package-enable-at-startup nil)
@@ -10,6 +13,8 @@
     ("melpa" . "https://melpa.org/packages/")))
   (package-initialize)
 #+END_SRC
+
+Next, we want to ensure that use-package is installed and activated.
 
 #+BEGIN_SRC emacs-lisp
   (unless (package-installed-p 'use-package)
@@ -20,12 +25,16 @@
 
 * UI configuration
 
+Set the colorscheme.
+
 #+BEGIN_SRC emacs-lisp
   (use-package zenburn-theme
     :ensure t
     :config
     (load-theme 'zenburn t))
 #+END_SRC
+
+Disable all of the UI elements.
 
 #+BEGIN_SRC emacs-lisp
   (scroll-bar-mode -1)
@@ -36,12 +45,16 @@
   (blink-cursor-mode 0)
 #+END_SRC
 
+Set the font to Terminus.
+
 #+BEGIN_SRC emacs-lisp
   (set-frame-font (font-spec :family "xos4 Terminus" :size 20))
 #+END_SRC
 
 * General settings
-  
+
+Various general settings.
+
 #+BEGIN_SRC emacs-lisp
   (setq-default
    fill-column 80
@@ -79,7 +92,17 @@ Show matching parentheses.
   (show-paren-mode 1)
 #+END_SRC
 
+Don't backup files in the same directory.
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist `(("." . "~/.saves")))
+  (setq backup-by-copying t)
+  (setq auto-save-default nil)
+#+END_SRC
+
 * Evil mode
+
+This requires its own config section.
 
 #+BEGIN_SRC emacs-lisp
   (setq evil-want-C-u-scroll t)
@@ -87,4 +110,42 @@ Show matching parentheses.
     :ensure t
     :config
     (evil-mode 1))
+#+END_SRC
+
+No search highlighting.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default evil-ex-search-highlight-all nil)
+#+END_SRC
+
+Set jump behavior to match vim (i.e. jumping to and from dired
+buffers, scratch buffers, etc.).
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-rename-dired-buffer ()
+    (interactive)
+    (unless (string-match-p "Dired:" (buffer-name))
+      (rename-buffer (concat "Dired:" (buffer-name)))))
+
+  (add-hook 'dired-mode-hook 'my-rename-dired-buffer)
+  (setq evil--jumps-buffer-targets "\\(\\*\\(\\new\\|scratch\\)\\*\\|Dired:.+\\)")
+  (evil-add-command-properties #'dired-find-file :jump t)
+#+END_SRC
+
+Also, it should be possible to do CTRL-w CTRL-hjkl to switch windows.
+
+#+BEGIN_SRC emacs-lisp
+  (define-key evil-window-map (kbd "DEL") 'evil-window-left)
+  (define-key evil-window-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-window-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-window-map (kbd "C-l") 'evil-window-right)
+#+END_SRC
+
+* Miscellaneous
+
+SICP in emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package sicp
+    :ensure t)
 #+END_SRC
