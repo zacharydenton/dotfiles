@@ -12,5 +12,7 @@ ln -s $DIR/tmux/.tmux.conf ~
 ln -s $DIR/vim/.vim ~
 mkdir ~/.vim/swapfiles
 ln -s $DIR/vim/.vimrc ~
+ln -s $DIR/xorg/.xinitrc ~
+ln -s $DIR/xorg/.xmodmap ~
 ln -s $DIR/zsh/.zshrc ~
 ln -s $DIR/zsh/.zshrc.local ~

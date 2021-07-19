@@ -11,6 +11,7 @@ few more package repositories in addition to the default one.
   (setq package-archives '(("org" . "https://orgmode.org/elpa/")
     ("gnu" . "https://elpa.gnu.org/packages/")
     ("melpa" . "https://melpa.org/packages/")))
+  (setq use-package-always-ensure t)
   (package-initialize)
 #+END_SRC
 
@@ -29,7 +30,6 @@ Set the colorscheme.
 
 #+BEGIN_SRC emacs-lisp
   (use-package zenburn-theme
-    :ensure t
     :config
     (load-theme 'zenburn t))
 #+END_SRC
@@ -37,11 +37,13 @@ Set the colorscheme.
 Disable all of the UI elements.
 
 #+BEGIN_SRC emacs-lisp
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (tooltip-mode -1)
+  (if (display-graphic-p)
+    (progn
+      (scroll-bar-mode -1)
+      (tool-bar-mode -1)
+      (set-fringe-mode 0)
+      (tooltip-mode -1)))
   (menu-bar-mode -1)
-  (set-fringe-mode 0)
   (blink-cursor-mode 0)
 #+END_SRC
 
@@ -107,7 +109,6 @@ This requires its own config section.
 #+BEGIN_SRC emacs-lisp
   (setq evil-want-C-u-scroll t)
   (use-package evil
-    :ensure t
     :config
     (evil-mode 1))
 #+END_SRC
@@ -141,13 +142,18 @@ Also, it should be possible to do CTRL-w CTRL-hjkl to switch windows.
   (define-key evil-window-map (kbd "C-l") 'evil-window-right)
 #+END_SRC
 
+Remove unwanted auto-indent in org mode.
+
+#+BEGIN_SRC emacs-lisp
+  (setq evil-auto-indent nil)
+#+END_SRC
+
 * Rust
 
 Auto-format Rust code.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
-    :ensure t
     :config
     (setq rust-format-on-save t))
 #+END_SRC
@@ -155,10 +161,8 @@ Auto-format Rust code.
 Use RLS to provide Rust IDE features.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t)
+  (use-package yasnippet)
   (use-package lsp-mode
-    :ensure t
     :config
     (add-hook 'rust-mode-hook #'lsp)
     (add-hook 'rust-mode-hook #'flycheck-mode))
@@ -168,7 +172,6 @@ Excessive UI feedback for light reading between coding.
 
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-ui
-    :ensure t
     :config
     (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 #+END_SRC
@@ -177,10 +180,36 @@ Add autocompletion support.
 
 #+BEGIN_SRC emacs-lisp
   (use-package company-lsp
-    :ensure t
     :config
     (push 'company-lsp company-backends)
     (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))
+#+END_SRC
+
+* Org mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package htmlize)
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (defun zd/org-capture-log ()
+    (interactive)
+    "Capture a log entry"
+    (org-capture nil "l"))
+  (define-key global-map (kbd "C-3") 'zd/org-capture-log)
+  (use-package gnuplot-mode)
+  (setq org-link-abbrev-alist
+	'(("google" . "https://www.google.com/search?q=")
+	  ("wiki" . "https://en.wikipedia.org/wiki/%s")))
+  (setq org-agenda-files '("~/memex/README.org"))
+  (setq org-agenda-include-diary t)
+  (setq org-latex-create-formula-image-program 'dvisvgm)
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  (org-babel-do-load-languages 'org-babel-load-languages
+			       '((shell . t)))
+  (setq org-capture-templates
+	'(("l" "Log" entry (file+olp+datetree "~/memex/README.org" "Log")
+	   "* %?" :unnarrowed t :immediate-finish t :jump-to-captured t)))
 #+END_SRC
 
 * Miscellaneous
@@ -188,6 +217,5 @@ Add autocompletion support.
 SICP in emacs.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package sicp
-    :ensure t)
+  (use-package sicp)
 #+END_SRC
