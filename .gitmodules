@@ -31,3 +31,6 @@
 [submodule "vim/.vim/pack/plugins/start/vim-elixir"]
 	path = vim/.vim/pack/plugins/start/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "vim/.vim/pack/plugins/start/Zenburn"]
+	path = vim/.vim/pack/plugins/start/Zenburn
+	url = https://github.com/jnurmine/Zenburn.git

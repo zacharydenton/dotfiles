@@ -5,28 +5,35 @@ set showtabline=0
 set directory=$HOME/.vim/swapfiles//
 
 " Colorscheme
-colorscheme dimburn
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+set termguicolors
+colorscheme zenburn
 
 " FZF
 let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " Grepper
-let g:grepper = {}
-let g:grepper.tools = ['rg']
-set grepprg=rg\ -H\ --no-heading\ --vimgrep
-set grepformat=$f:$l:%c:%m
+"runtime plugin/grepper.vim
+"let g:grepper.rg.escape .= ''
 
 " ALE
 let g:ale_fix_on_save = 1
 let g:ale_cache_executable_check_failures = 1
 let g:ale_linters = {
 \ 'javascript': [],
+\ 'rust': ['cargo', 'analyzer'],
 \}
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
+\ 'javascript': ['eslint', 'prettier'],
+\ 'typescript': ['eslint', 'prettier'],
+\ 'typescriptreact': ['eslint', 'prettier'],
+\ 'rust': ['rustfmt'],
+\ 'ruby': ['rubocop'],
 \}
-let g:ale_javascript_prettier_options = '--trailing-comma all --no-bracket-spacing'
 
 " Space to copy in visual mode
 vnoremap <space> "*y

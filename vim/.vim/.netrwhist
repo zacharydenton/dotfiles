@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/zach/code/dotfiles/vim/.vim/pack/plugins/start/move.vim/syntax'
+let g:netrw_dirhist_3='/home/zach/code/dotfiles/vim/.vim/pack/plugins/start/move.vim/ftdetect'
+let g:netrw_dirhist_2='/home/zach/code/aptos-site/static/images'
+let g:netrw_dirhist_1='/home/zach/code/aptos-core/ecosystem/platform/server/app/controllers'
+let g:netrw_dirhist_0='/home/zach/code/aptos-core/.github/workflows'
+let g:netrw_dirhist_9='/home/zach/code/aptos-core/.github'
+let g:netrw_dirhist_8='/home/zach/code/aptos-core/.github/actions'
+let g:netrw_dirhist_7='/home/zach/code/aptos-core/.github/actions/docker-buildx-setup'
+let g:netrw_dirhist_6='/home/zach/code/aptos-core/ecosystem/platform/server/app/assets/stylesheets'
+let g:netrw_dirhist_5='/home/zach/code/aptos-core/ecosystem/platform/server/app/views/nft_offers'
