@@ -19,9 +19,6 @@
 [submodule "vim/.vim/pack/plugins/start/grepper"]
 	path = vim/.vim/pack/plugins/start/grepper
 	url = https://github.com/mhinz/vim-grepper.git
-[submodule "vim/.vim/pack/plugins/start/javascript"]
-	path = vim/.vim/pack/plugins/start/javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/.vim/pack/plugins/start/jsx"]
 	path = vim/.vim/pack/plugins/start/jsx
 	url = https://github.com/mxw/vim-jsx.git
@@ -34,3 +31,18 @@
 [submodule "vim/.vim/pack/plugins/start/Zenburn"]
 	path = vim/.vim/pack/plugins/start/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git
+[submodule "vim/.vim/pack/plugins/start/move.vim"]
+	path = vim/.vim/pack/plugins/start/move.vim
+	url = https://github.com/zacharydenton/move.vim.git
+[submodule "vim/.vim/pack/plugins/start/typescript-vim"]
+	path = vim/.vim/pack/plugins/start/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "vim/.vim/pack/plugins/start/vim-javascript"]
+	path = vim/.vim/pack/plugins/start/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/.vim/pack/plugins/start/vim-jsx-pretty"]
+	path = vim/.vim/pack/plugins/start/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule "vim/.vim/pack/plugins/start/vim-jsx-typescript"]
+	path = vim/.vim/pack/plugins/start/vim-jsx-typescript
+	url = https://github.com/peitalin/vim-jsx-typescript.git
