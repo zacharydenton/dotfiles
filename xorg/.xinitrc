@@ -5,6 +5,9 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+xrandr --output DisplayPort-1 --left-of DisplayPort-2 --auto --rotate left
+xrandr --output HDMI-A-0 --right-of DisplayPort-2 --auto --rotate right
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then

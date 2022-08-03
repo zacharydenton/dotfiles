@@ -148,6 +148,8 @@ Remove unwanted auto-indent in org mode.
   (setq evil-auto-indent nil)
 #+END_SRC
 
+#+RESULTS:
+
 * Rust
 
 Auto-format Rust code.
@@ -192,6 +194,7 @@ Add autocompletion support.
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
+  (require 'org-tempo)
   (defun zd/org-capture-log ()
     (interactive)
     "Capture a log entry"

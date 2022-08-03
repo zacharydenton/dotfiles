@@ -7,3 +7,9 @@
 	prompt = false
 [alias]
 	d = difftool
+[core]
+	editor = vim
+[init]
+	defaultBranch = master
+[pull]
+	rebase = false
