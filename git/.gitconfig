@@ -1,3 +1,5 @@
+[core]
+  editor = vim
 [user]
 	email = z@chdenton.com
 	name = Zach Denton
@@ -5,6 +7,8 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[merge]
+	tool = vimdiff
 [alias]
 	d = difftool
 [core]
