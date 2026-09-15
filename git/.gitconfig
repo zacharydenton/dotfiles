@@ -1,19 +1,45 @@
-[core]
-  editor = vim
 [user]
 	email = z@chdenton.com
 	name = Zach Denton
-[diff]
-	tool = vimdiff
-[difftool]
-	prompt = false
-[merge]
-	tool = vimdiff
-[alias]
-	d = difftool
 [core]
 	editor = vim
 [init]
 	defaultBranch = master
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[diff]
+	tool = vimdiff
+	algorithm = histogram
+	colorMoved = default
+	renames = true
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+	conflictstyle = zdiff3
+[rerere]
+	enabled = true
+	autoupdate = true
+[fetch]
+	prune = true
+	pruneTags = true
 [pull]
 	rebase = false
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[rebase]
+	autosquash = true
+	autostash = true
+	updateRefs = true
+[commit]
+	verbose = true
+[help]
+	autocorrect = prompt
+[alias]
+	d = difftool
