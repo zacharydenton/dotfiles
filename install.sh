@@ -71,6 +71,7 @@ fi
 if command -v fish >/dev/null 2>&1; then
   log "==> fish"
   link "$DIR/fish/.config/fish/conf.d/dotfiles.fish" "$HOME/.config/fish/conf.d/dotfiles.fish"
+  link "$DIR/fish/.config/fish/functions/fish_prompt.fish" "$HOME/.config/fish/functions/fish_prompt.fish"
 fi
 
 if command -v emacs >/dev/null 2>&1; then
